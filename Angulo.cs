@@ -130,6 +130,17 @@ namespace Angulo_sen_cos
             return sen;
         }
 
+        
+        //Calcula a tangente atravez do sen e do cos
+        public static double Tan(int angulo, double precisao)
+        {
+            double tan = Sen(angulo, precisao) / Cos(angulo, precisao);
+
+            //Retorna o resultado
+            return tan;
+
+        }
+
         //Como não há uma função de fatorial pronta eu mesmo fiz esse função 
         private static double fatorial(int iteracoes)
         {
