@@ -8,6 +8,7 @@ namespace Angulo_sen_cos
 {
     public static class FormulasFisica
     {
+        //Gravidade
         private const Double G = 9.8;
 
 
