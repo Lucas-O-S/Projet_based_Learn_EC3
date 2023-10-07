@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +11,10 @@ namespace Angulo_sen_cos
     public static class Angulo
     {
         //O metodo que calcula cosseno com base em um angulo e a precisão escolhida
-        public static double Cos(int angulo, double precisao)
+        public static double Cos(double angulo, double precisao)
         {
-            double cos = 0, teste;
+            double cos = 0, teste, NovoAngulo = ArrumarAngulo(angulo); ;
             int iteracoes = 0, ResultadoDerivada;
-
 
             while (true){
 
@@ -44,10 +43,10 @@ namespace Angulo_sen_cos
                 }
 
                 //Formula da serie de maclaurin
-                cos += (ResultadoDerivada * Math.Pow(angulo, iteracoes)) / fatorial(iteracoes);
+                cos += (ResultadoDerivada * Math.Pow(NovoAngulo, iteracoes)) / fatorial(iteracoes);
 
                 //Formula de teste de precisão
-                teste = (1 / fatorial(iteracoes + 1)) * (Math.Pow(angulo, iteracoes+1));
+                teste = (1 / fatorial(iteracoes + 1)) * (Math.Pow(NovoAngulo, iteracoes+1));
 
 
                 //Teste para verificar precisão
@@ -65,15 +64,17 @@ namespace Angulo_sen_cos
 
             }
 
-
             //Retorna o cosseno
-            return cos;
+      
+                return cos;
+
+            
         }
 
         //O metodo que calcula Seno com base em um angulo e a precisão escolhida
-        public static double Sen(int angulo, double precisao)
+        public static double Sen(double angulo, double precisao)
         {
-            double sen = 0, teste;
+            double sen = 0, teste, NovoAngulo = ArrumarAngulo(angulo);
             int iteracoes = 0, ResultadoDerivada;
 
             //Verifica qual o valor da derivada com x = 0
@@ -103,12 +104,11 @@ namespace Angulo_sen_cos
                 }
 
                 //Formula da serie de maclaurin
-                sen += (ResultadoDerivada * Math.Pow(angulo, iteracoes)) / fatorial(iteracoes);
+                sen += (ResultadoDerivada * Math.Pow(NovoAngulo, iteracoes)) / fatorial(iteracoes);
                 
                 //Formula de teste de precisão
-                teste = (1 / fatorial(iteracoes + 1)) * (Math.Pow(angulo, iteracoes + 1));
+                teste = (1 / fatorial(iteracoes + 1)) * (Math.Pow(NovoAngulo, iteracoes + 1));
 
-                Console.WriteLine(ResultadoDerivada);
 
                 //Teste para verificar precisão
                 if (teste < precisao)
@@ -125,37 +125,80 @@ namespace Angulo_sen_cos
 
             }
 
+   
 
             //Retorna o seno procurado
-            return sen;
+            return -sen;
         }
 
-        
         //Calcula a tangente atravez do sen e do cos
-        public static double Tan(int angulo, double precisao)
+        public static double Tan(Double angulo, double precisao)
         {
-            double tan = Sen(angulo, precisao) / Cos(angulo, precisao);
+            double tan;
+            if (angulo != 90 && angulo != 270)
+            {
+                tan = Sen(angulo, precisao) / Cos(angulo, precisao);
+
+            }
+            else
+            {
+                tan = 0;
+            }
 
             //Retorna o resultado
             return tan;
 
         }
 
+
+
         //Como não há uma função de fatorial pronta eu mesmo fiz esse função 
-        private static double fatorial(int iteracoes)
+        static double fatorial(int num)
         {
-            double resposta = 1;
-            for(int  i = 1; i<iteracoes+1; i++)
+            if (num == 0)
+                return 1;
+            double result = 1;
+            for (int i = 1; i <= num; i++)
             {
-                resposta = resposta * i;
+                result *= i;
+            }
+            return result;
+        }
 
-
+        private static double ArrumarAngulo(double NovoAngulo)
+        {
+            while(NovoAngulo > 90)
+            {
+                NovoAngulo -= 360;
             }
 
-            return resposta;
+            if (NovoAngulo > 90 && NovoAngulo <= 180)
+            {
+                NovoAngulo  = 180 - NovoAngulo;
+                
+            }
+            else
+            {
 
+                if (NovoAngulo > 180 && NovoAngulo <= 270)
+                {
+                    NovoAngulo = 180 - NovoAngulo;
+
+                }
+                else
+                {
+                    NovoAngulo = 360 - NovoAngulo;
+                }
+            } 
+
+
+
+            return NovoAngulo * Math.PI / 180;
         }
+
     }
+
+
 
 
 }
