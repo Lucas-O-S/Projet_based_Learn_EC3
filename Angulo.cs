@@ -127,7 +127,7 @@ namespace Angulo_sen_cos
 
    
 
-            //Retorna o seno procurado
+            //Retorna o seno procurado(O negativo é para corrigir valor)
             return -sen;
         }
 
@@ -140,6 +140,7 @@ namespace Angulo_sen_cos
                 tan = Sen(angulo, precisao) / Cos(angulo, precisao);
 
             }
+            //Como cosseno de 90 é 0 isso evita erro de divisão por 0
             else
             {
                 tan = 0;
@@ -165,6 +166,7 @@ namespace Angulo_sen_cos
             return result;
         }
 
+        //Arruma o angulo com base no circulo trigonometrico colocando o valor equivalente
         private static double ArrumarAngulo(double NovoAngulo)
         {
             while(NovoAngulo > 90)
@@ -192,7 +194,7 @@ namespace Angulo_sen_cos
             } 
 
 
-
+            //Tranforma o angulo em radianos
             return NovoAngulo * Math.PI / 180;
         }
 
