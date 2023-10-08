@@ -16,7 +16,7 @@ namespace Angulo_sen_cos
 
 
         //Ajusta a velocidade inicial de x 
-        private static double VX0(double V0, double Cos)
+        public static double VX0(double V0, double Cos)
         {
             Double vx0 = V0 * Cos;
 
@@ -34,7 +34,7 @@ namespace Angulo_sen_cos
         }
 
         //Ajusta a velocidade inicial de x 
-        private static double VY0(double Velocidade0, double Sen)
+        public static double VY0(double Velocidade0, double Sen)
         {
             Double vy0 = Velocidade0 * Sen;
 
