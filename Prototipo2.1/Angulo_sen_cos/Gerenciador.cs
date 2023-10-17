@@ -56,7 +56,7 @@ namespace ProjetilTeste
             CordenadaXMeteoro = Convert.ToString(PosicaoXMeteoro);
             CordenadaYMeteoro = Convert.ToString(PosicaoYMeteoro);
             CordenadaXProjetil = Convert.ToString(PosicaoXProjetil);
-            CordenadaXProjetil = Convert.ToString(PosicaoYProjetil);
+            CordenadaYProjetil = Convert.ToString(PosicaoYProjetil);
 
 
         }
