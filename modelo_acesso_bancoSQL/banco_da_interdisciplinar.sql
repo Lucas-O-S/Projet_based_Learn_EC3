@@ -1,3 +1,15 @@
+--==============================================================================--
+--CRIAÇÃO DE STORAGE PROCEDURES E TRIGGERS PARA PROGRAMA DE LANÇAMENTO BALISTICO--
+--==============================================================================--
+/*INTEGRANTES:
+		ADRIANA
+		BIANCA
+		DIEGO
+		LUCAS
+		VITORIA
+
+*/
+--==============================================================================--
 USE master
 go
 --APAGANDO O BANCO DE DADOS COM O MESMO NOME QUE O SEU CASO EXISTA
@@ -52,6 +64,7 @@ CREATE TABLE [dbo].[LANCA](
 	[angulo] [int],
 	[idUsuario] [int] ,
 	[idProjetil] [int],
+	[data_inclusao] [DATETIME],
 	CONSTRAINT PK_id_lanca PRIMARY KEY (idUsuario,idProjetil),
 	CONSTRAINT FK_id_usuario FOREIGN KEY (idUsuario) REFERENCES [dbo].[USUARIO] (idUsuario),
 	CONSTRAINT FK_idProjetil FOREIGN KEY (idProjetil) REFERENCES [dbo].[PROJETIL] (idProjetil)
@@ -81,84 +94,3 @@ CREATE TABLE [DBO].[INTERCEPTA](
 	CONSTRAINT FK_id_Projetil FOREIGN KEY (idProjetil) REFERENCES [dbo].[PROJETIL] (idProjetil),
 	CONSTRAINT FK_id_Meteoro FOREIGN KEY (idMeteoro) REFERENCES [dbo].[METEORO] (idMeteoro)
 )
-
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(88.2,89.2,102.2,100.3)
-go
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(89.2,79.2,112.2,101.3)
-go
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(68.2,99.2,112.2,110.3)
-go
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(85.2,86.2,107.2,108.3)
-go
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(83.2,82.2,122.2,120.3)
-go
-INSERT INTO dbo.PROJETIL (posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY)
-	values(87.2,87.2,105.2,106.3)
-go
-
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(56.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(54.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(55.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(57.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(53.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.METEORO (posicaoInicialX, posicaoFinalX, posicaoInicialY, posicaoFinalY)
-	values(52.1,58.3,82.1,86.3)
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('diego', 'teset@teste.com')
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('thomas', 'teset@teste.com')
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('emilly', 'teset@teste.com')
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('otavio', 'teset@teste.com')
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('thais', 'teset@teste.com')
-go
-INSERT INTO dbo.USUARIO(nome,email)
-	values('maria', 'teset@teste.com')
-go
-select * from dbo.PROJETIL
-select * from dbo.METEORO
-select * from dbo.USUARIO
-
-SET @idUsuario = LAST_INSERT_idUsuario();
-INSERT INTO dbo.LANCA (angulo,velInicial,idProjetil, idUsuario)
-	values(30,33.5,(select p.idProjetil from dbo.PROJETIL p where idProjetil=1),(select u.idUsuario from dbo.USUARIO u where idUsuario=1))
-go
-INSERT INTO dbo.LANCA (angulo,velInicial, idProjetil)
-	values(30,31.5,2,2)
-go
-INSERT INTO dbo.LANCA (angulo,velInicial)
-	values(32,32.5,3,3)
-go
-INSERT INTO dbo.LANCA (angulo,velInicial)
-	values(33,32.5,4,4)
-go
-INSERT INTO dbo.LANCA (angulo,velInicial)
-	values(30,42.5,5,5)
-go
-INSERT INTO dbo.LANCA (angulo,velInicial)
-	values(41,32.5,6,6)
-go
-
-select * from dbo.LANCA
