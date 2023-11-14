@@ -51,6 +51,7 @@ BEGIN
 	SELECT 
 		@POSICAO_FINALX_PROJETIL = posicaoFinalX, 
 		@POSICAO_FINALY_PROJETIL = posicaoFinalY,
+		@tempo = tempo,
 		@ID_PROJETIL = idProjetil
 	from inserted;
 	--OBTENDO VALORES FINAIS DE X E Y DE METEOROS
@@ -60,8 +61,11 @@ BEGIN
 		@ID_METEORO = M.idMeteoro
 	FROM METEORO M 
 	WHERE M.idMeteoro = @ID_PROJETIL 
+
+
 	--VERIFICA SE O VALOR EM X E Y FINAL PARA O PROJETIL É IGUAL AO DO METEORO
-	IF (@POSICAO_FINALX_METEORO = @POSICAO_FINALX_PROJETIL)
+	IF (abs(@POSICAO_FINALX_METEORO - @POSICAO_FINALX_PROJETIL) <= 250
+	and abs(@POSICAO_FINALY_METEORO - @POSICAO_FINALY_PROJETIL) <= 250)
 		BEGIN
 			INSERT INTO INTERCEPTA (tempo, pontoX, pontoY, idProjetil, idMeteoro) 
 				values (@tempo, @POSICAO_FINALX_PROJETIL,
@@ -77,31 +81,29 @@ END
 --TRIGGER QUE IMPEDE A INSERÇÃO DE DADOS DUPLICADOS PARA
 --ANGULO E VELOCIDADE INICIAL
 CREATE OR ALTER TRIGGER TRG_STOP_DUPLICATE ON LANCA 
-INSTEAD OF INSERT AS
+for INSERT AS
 BEGIN
 	--DECLARANDO VARIAVEIS
 	DECLARE @ANGULO_DUPLICATE INT,
-			@ANGULO_VERIFICACAO INT,
 			@VEL_INICIAL_DUPLICATE FLOAT,
-			@VEL_VERIFICACAO FLOAT
+			@IdLanca int
 	--OBTENDO DADO INSERIDO
-	SELECT @ANGULO_DUPLICATE = angulo, @VEL_INICIAL_DUPLICATE = velinicial 
+	SELECT @ANGULO_DUPLICATE = angulo, @VEL_INICIAL_DUPLICATE = velinicial , @IdLanca = IdLanca
 	FROM INSERTED
 	
-	SELECT @ANGULO_VERIFICACAO = L.angulo 
-	FROM LANCA L 
-	WHERE L.angulo= @ANGULO_DUPLICATE
-	
-	SELECT @VEL_VERIFICACAO = L.velInicial
-	FROM LANCA L
-	WHERE L.velInicial = @VEL_INICIAL_DUPLICATE
-
 	--LAÇO CONDICIONAL QUE VERIFICA DUPLICIDADE
-	IF (@VEL_INICIAL_DUPLICATE = @VEL_VERIFICACAO) AND 
-		(@ANGULO_DUPLICATE = @VEL_VERIFICACAO)
+	IF  exists(select * from LANCA where @ANGULO_DUPLICATE = angulo and @VEL_INICIAL_DUPLICATE = velInicial AND @IdLanca != IDLANCA) 
 		BEGIN
 			ROLLBACK TRANSACTION
+			declare @lastProjetil int =  (select top 1(idProjetil) from PROJETIL order by idProjetil desc)
+			declare @lastMeteoro int =  (select top 1(idMeteoro) from METEORO order by idMeteoro desc)
+			declare @lastiNTERCEPTA int =  (select top 1(idINTERCEPTA) from INTERCEPTA order by idINTERCEPTA desc)
+			
+			DELETE INTERCEPTA WHERE idINTERCEPTA = @lastiNTERCEPTA
+			delete PROJETIL where idProjetil = @lastProjetil
+			delete METEORO where IDMETEORO  = @lastMeteoro
 			RAISERROR('Dado duplicado, não é permitido a inserção de angulo e velocidade inicial duplicados',15,1);
 			RETURN;
 		END
 END
+

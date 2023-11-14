@@ -19,6 +19,7 @@ GO
 CREATE OR ALTER PROCEDURE sp_ex_dados_angulo (@angulo int) as
 begin
 	SELECT
+		l.velinicial as Velocidade_Inicial,
 		p.posicaoFinalX as Projetil_final_X,
 		p.posicaoFinalY as Projetil_final_Y,
 		m.posicaoFinalX as Meteoro_final_X,
@@ -44,6 +45,7 @@ CREATE OR ALTER PROCEDURE sp_ex_dados_velocidade (@velocidade float) as
 begin
 	
 	SELECT
+		l.angulo as Angulo,
 		p.posicaoFinalX as Projetil_final_X,
 		p.posicaoFinalY as Projetil_final_Y,
 		m.posicaoFinalX as Meteoro_final_X,
@@ -95,7 +97,8 @@ CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_LP (
 	@POSICAO_FINAL_X FLOAT,
 	@POSICAO_INICIAL_Y FLOAT,
 	@POSICAO_FINAL_Y FLOAT, 
-	@TEMPO INT
+	@TEMPO INT,
+	@ID_USUARIO int
 	) AS
 BEGIN 
 	
@@ -103,20 +106,32 @@ BEGIN
 	INSERT INTO dbo.PROJETIL(posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY,tempo)
 		VALUES(@POSICAO_INICIAL_X,@POSICAO_FINAL_X,@POSICAO_INICIAL_Y,@POSICAO_FINAL_Y,@TEMPO);
 	--OBTEM O ID DA TABELA USUARIO E DA TABELA PROJETIL
-	DECLARE @ID_USUARIO INT = (SELECT Top 1(L.idUsuario)
-						FROM USUARIO L
-						ORDER BY L.idUsuario DESC);
+
 	DECLARE @ID_PROJETIL INT = (SELECT Top 1(P.idProjetil)
 						FROM PROJETIL P
 						ORDER BY P.idProjetil DESC);
 	--INSERE OS DADOS EXTERNOS RECEBIDOS NA TABELA LANÇA
-	INSERT INTO dbo.LANCA(angulo,velInicial,idProjetil, idUsuario)
+	INSERT INTO LANCA(angulo,velInicial,idProjetil, idUsuario)
 		VALUES(@ANGULO, @VELOCIDADE_INICIAL,@ID_PROJETIL,@ID_USUARIO);
 
 END
 
 
-exec SP_INSERT_DADOS_LP 35.3,30,1.1,89.5,1.1,100.1;
+exec SP_INSERT_USUARIO 'Lucas', 'asjdkad@ikadjai.com'
+exec SP_INSERT_DADOS_METEORO 1000, 1000,40500,20
+exec SP_INSERT_DADOS_LP 1202,5,0,1000,0,2000,20,1
+
 select * from USUARIO
 select * from PROJETIL
 select * from LANCA
+select * from METEORO
+select * from INTERCEPTA
+
+delete INTERCEPTA
+delete PROJETIL
+delete lanca
+DELETE METEORO
+
+exec sp_ex_dados_angulo 90
+
+exec sp_ex_dados_velocidade 100
