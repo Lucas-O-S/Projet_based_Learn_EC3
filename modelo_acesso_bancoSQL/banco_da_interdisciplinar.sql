@@ -52,7 +52,7 @@ CREATE TABLE [dbo].[PROJETIL](
 	[posicaoFinalX] [float],
 	[posicaoInicialY] [float],
 	[posicaoFinalY] [float],
-
+	[tempo] [int]
 )
 go
 
