@@ -18,6 +18,10 @@ namespace modelo_acesso_bancoSQL
             con.ConnectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\DBProjetoInterdisciplinar.mdf;Integrated Security=True;Connect Timeout=30;ApplicationIntent=ReadOnly";
       
         }
+        //metodo para busca de dados
+        //***//
+
+
         //Metodo Conectar
         public SqlConnection conectar()
         {
