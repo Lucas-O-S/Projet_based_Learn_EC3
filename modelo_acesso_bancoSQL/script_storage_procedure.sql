@@ -4,7 +4,7 @@
 /*INTEGRANTES:
 		ADRIANA
 		BIANCA
-		DIEGO
+		DIEGO SOUZA LIMA
 		LUCAS
 		VITORIA
 
@@ -31,13 +31,8 @@ begin
 	WHERE @angulo = l.angulo
 end
 
-select * from dbo.LANCA
-select * from dbo.METEORO
-select * from dbo.PROJETIL p
-join dbo.LANCA l on l.idProjetil=p.idProjetil
+--==================================================================================
 
-declare @res int
-exec @res =  sp_ex_dados_angulo 30;
 
 --SP QUE CONFORME A VELOCIDADE FORNECIDA BUSCA OS PONTO FINAL DE X E Y
 --DO PROJETIL E DO METEORO E JUNTA EM UMA TABELA TEMPORARIA
@@ -57,12 +52,8 @@ begin
 	WHERE @velocidade = l.velInicial
 end
 
-select * from dbo.METEORO
-select * from dbo.PROJETIL p
-join dbo.LANCA l on l.idProjetil=p.idProjetil
+--=================================================================================
 
-declare @vel FLOAT
-exec @vel =  sp_ex_dados_velocidade 32.5;
 
 --SP QUE RECEBE OS DADOS EXTERNOS E CARREGA A TABELA METEORO
 CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_METEORO (
@@ -76,8 +67,8 @@ BEGIN
 		values (@POSICAO_INICIAL_X,@POSICAO_FINAL_X,@POSICAO_INICIAL_Y,@POSICAO_FINAL_Y);
 END
 
-select * from METEORO
-exec SP_INSERT_DADOS_METEORO 58.2,102.5,25.3,89.3
+--============================================================================================
+
 
 --SP QUE RECEBE OS DADOS EXTERNOS E CARREGA A TABELA USUARIOS
 CREATE OR ALTER PROCEDURE SP_INSERT_USUARIO (@NOME VARCHAR(20), @EMAIL VARCHAR(60))AS
@@ -88,6 +79,9 @@ BEGIN
 
 END
 
+--==========================================================================================
+
+
 --SP QUE RECEBE OS DADOS EXTERNOS E CARREGA AS TABELAS 
 -- LANÇA E PROJETIL
 CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_LP (
@@ -97,8 +91,7 @@ CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_LP (
 	@POSICAO_FINAL_X FLOAT,
 	@POSICAO_INICIAL_Y FLOAT,
 	@POSICAO_FINAL_Y FLOAT, 
-	@TEMPO INT,
-	@ID_USUARIO int
+	@TEMPO INT
 	) AS
 BEGIN 
 	
@@ -119,21 +112,3 @@ BEGIN
 END
 
 
-exec SP_INSERT_USUARIO 'Lucas', 'asjdkad@ikadjai.com'
-exec SP_INSERT_DADOS_METEORO 1000, 1000,40500,20
-exec SP_INSERT_DADOS_LP 1202,5,0,1000,0,2000,20,1
-
-select * from USUARIO
-select * from PROJETIL
-select * from LANCA
-select * from METEORO
-select * from INTERCEPTA
-
-delete INTERCEPTA
-delete PROJETIL
-delete lanca
-DELETE METEORO
-
-exec sp_ex_dados_angulo 90
-
-exec sp_ex_dados_velocidade 100

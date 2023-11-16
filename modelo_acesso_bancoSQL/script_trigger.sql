@@ -4,7 +4,7 @@
 /*INTEGRANTES:
 		ADRIANA
 		BIANCA
-		DIEGO
+		DIEGO DE SOUZA LIMA
 		LUCAS
 		VITORIA
 
@@ -29,8 +29,7 @@ INSERT INTO LANCA (angulo,velInicial,idProjetil, idUsuario)
 	values(30,33.5, 1 , 1);
 go
 
-SELECT * FROM PROJETIL
-SELECT * FROM LANCA
+--===========================================================================================
 
 --TRIGGER QUE ALIMENTA A TABELA INTERCEPTA
 --CASO OS VALORES FINAIS DE X E X NAS TABELAS PROJETIL E METEORO
@@ -77,6 +76,8 @@ BEGIN
 				VALUES(NULL, NULL, NULL,@ID_PROJETIL, @ID_METEORO)
 		END
 END
+
+--===========================================================================================
 
 --TRIGGER QUE IMPEDE A INSERÇÃO DE DADOS DUPLICADOS PARA
 --ANGULO E VELOCIDADE INICIAL

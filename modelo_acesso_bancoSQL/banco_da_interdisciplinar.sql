@@ -4,7 +4,7 @@
 /*INTEGRANTES:
 		ADRIANA
 		BIANCA
-		DIEGO
+		DIEGO DE SOUZA LIMA
 		LUCAS
 		VITORIA
 
@@ -12,9 +12,15 @@
 --==============================================================================--
 USE master
 go
+
+--==============================================================================
+
 --APAGANDO O BANCO DE DADOS COM O MESMO NOME QUE O SEU CASO EXISTA
 drop database LancamentoBalistico
 go
+
+--==================================================================================
+
 --CRIANDO O BANCO DE DADOS JÁ DANDO O LOCAL DE CADA ARQUIVO VAI SER SALVO
 create database LancamentoBalistico
  CONTAINMENT = NONE
@@ -24,9 +30,15 @@ create database LancamentoBalistico
 ( NAME = N'LancamentoBalistico_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\LancamentoBalistico_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
+
+--==================================================================================
+
 --CHAMANDO O BANCO DE DADOS CRIADO PARA SER USADO
 USE [LancamentoBalistico]
 GO
+
+--===================================================================================
+
 --ALGUMAS CONFIGURAÇÕES DO BANCO
 SET ANSI_NULLS ON
 GO
@@ -34,6 +46,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--=====================================================================================
+
 --CRIANDO A TABELA DE USUARIO
 drop table [dbo].[USUARIO]
 
@@ -44,6 +59,7 @@ CREATE TABLE [dbo].[USUARIO](
 )
 go
 
+--CRIANDO A TABELA DE PROJETIL
 drop table [dbo].[PROJETIL]
 
 CREATE TABLE [dbo].[PROJETIL](
@@ -56,6 +72,7 @@ CREATE TABLE [dbo].[PROJETIL](
 )
 go
 
+--CRIANDO A TABELA DE LANÇA
 drop table [dbo].[LANCA]
 
 CREATE TABLE [dbo].[LANCA](
@@ -70,6 +87,8 @@ CREATE TABLE [dbo].[LANCA](
 	CONSTRAINT FK_idProjetil FOREIGN KEY (idProjetil) REFERENCES [dbo].[PROJETIL] (idProjetil)
 )
 go
+
+--CRIANDO A TABELA DE METEORO
 drop table [dbo].[METEORO]
 
 CREATE TABLE [dbo].[METEORO](
@@ -81,7 +100,8 @@ CREATE TABLE [dbo].[METEORO](
 )
 go
 
-drop table [dbo].[intercepta]
+--CRIANDO A TABELA INTERCEPTA
+drop table [dbo].[INTERCEPTA]
 
 CREATE TABLE [DBO].[INTERCEPTA](
 	[idIntercepta] [int] not null IDENTITY(1,1),
