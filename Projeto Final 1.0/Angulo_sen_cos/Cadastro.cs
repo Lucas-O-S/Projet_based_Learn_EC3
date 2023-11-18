@@ -113,21 +113,30 @@ namespace ProjetilTeste
 
         }
 
+        //Função que ativa SPs de busca com base em angulo ou velocidade
         public static DataTable BuscarDados(string valor, string TipoBusca)
         {
+            //Procedure selecionado
             string Procedure;
+            //Tabela que sera devolvida
             DataTable Tabela;
+            //Angulo pedido
             int angulo = int.Parse(valor); ;
+            //Velocidade Pedida
             double Velocidade = double.Parse(valor);
 
+            //Abre conexão
             cmd.Connection = Conexao.conectar();
 
+            //Ativa a SP de busca com base no angulo
             if (TipoBusca == "Angulo")
             {
                 Procedure = "sp_ex_dados_angulo";
 
                 cmd.CommandText = $"{Procedure} {angulo}";
             }
+
+            //Ativa a SP de busca com base na velocidade
             else
             {
                 Procedure = "sp_ex_dados_velocidade";
@@ -135,7 +144,7 @@ namespace ProjetilTeste
 
             }
 
-
+            //Função que faz a busca
             using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
             {
                 DataTable dataTable = new DataTable();
@@ -146,6 +155,7 @@ namespace ProjetilTeste
 
             }
 
+            //Retorna a tabela
             return Tabela;
             
 
