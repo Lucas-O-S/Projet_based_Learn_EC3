@@ -381,10 +381,13 @@ namespace ProjetilTeste
 
         }
 
+        //Deve salvar os dados da simulação
         public static void SalvarDados(int tempoTotal, bool DeveSalvar)
         {
+            //Impede de salvar duas vezes
             if (DeveSalvar)
             {
+                //Cadastro do meteoro e depois do projetil
                 Cadastro.CadastroMeteoro(Math.Round(meteoro.posicaoX0), Math.Round(meteoro.posicaoAtualX), Math.Round(meteoro.posicaoY0), Math.Round(meteoro.posicaoAtualY));
                 Cadastro.CadastroLP(projetil.VelocidadeInicial, AnguloAtual, Math.Round(projetil.posicaoX0), Math.Round(projetil.posicaoAtualX), Math.Round(projetil.posicaoY0), Math.Round(projetil.posicaoAtualY), tempoTotal);
 
