@@ -21,16 +21,18 @@ namespace ProjetilTeste
         {
 
         }
-
+        //Coloca os dados no visualizador de tabela
         public void PreencherGrid(DataTable dataTable)
         {
             Tabela.DataSource = dataTable;
         }
 
+        //Ativa botão que busca os dados da tabela sql
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
+                //Busca o valor pedido na caixa de texto e qual opção foi marcada na combo box
                 PreencherGrid(Cadastro.BuscarDados(txtValor.Text, cboxEscolha.Text));
                 Console.WriteLine(cboxEscolha.Text);
             }
@@ -47,6 +49,7 @@ namespace ProjetilTeste
 
         }
 
+        //Volta para tela Inicial
         private void btnVoltar(object sender, EventArgs e)
         {
             TelaInicial TI = new TelaInicial();
