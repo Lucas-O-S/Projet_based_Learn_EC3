@@ -231,7 +231,7 @@ namespace ProjetilTeste
                 //Pinta a area escohida
                 using (Graphics g = Fundo.CreateGraphics())
 
-                    g.FillEllipse(Brushes.Blue, rect);
+                    g.FillEllipse(Brushes.AntiqueWhite, rect);
             }
  
 
