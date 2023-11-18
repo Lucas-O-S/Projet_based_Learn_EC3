@@ -9,17 +9,20 @@ namespace ProjetilTeste
 {
     static class Conexao
     {
+        //Variavel de conexão
         static SqlConnection con = new SqlConnection();
 
+        //Variavel que define se esta ou não liberada a conexão com o BD
         public static bool Liberada = false;
+
+        //Cria uma conexão com o BD com base no nome do server, nome do usuario e senha
         static public void CriarConexao(string NServer, string NNome, string NSenha)
         {
             string TextConexao = $"Data Source={NServer}; Initial Catalog=LancamentoBalistico;Integrated Security=false ;User ID={NNome};Password={NSenha}";
             con.ConnectionString = TextConexao;
+            //Caso dê certo libera as outras funções
             Liberada = true;
         }
-        //metodo para busca de dados
-        //***//
 
 
         //Metodo Conectar
