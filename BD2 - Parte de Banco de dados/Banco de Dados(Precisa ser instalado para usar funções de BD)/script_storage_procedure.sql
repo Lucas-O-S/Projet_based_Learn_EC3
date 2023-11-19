@@ -1,12 +1,13 @@
 --==============================================================================--
---CRIAÇÃO DE STORAGE PROCEDURES E TRIGGERS PARA PROGRAMA DE LANÇAMENTO BALISTICO--
+--CRIAÃ‡ÃƒO DE STORAGE PROCEDURES E TRIGGERS PARA PROGRAMA DE LANÃ‡AMENTO BALISTICO--
 --==============================================================================--
 /*INTEGRANTES:
-		ADRIANA
-		BIANCA
-		DIEGO SOUZA LIMA
-		LUCAS
-		VITORIA
+		Adriana Kaori Kakazu
+		Beatriz dos Santos Buglio
+		Diego de Souza Lima
+		Lucas Oliveira Silva
+		Vitoria Kaori Kuriyama
+
 
 */
 --==============================================================================--
@@ -83,7 +84,7 @@ END
 
 
 --SP QUE RECEBE OS DADOS EXTERNOS E CARREGA AS TABELAS 
--- LANÇA E PROJETIL
+-- LANÃ‡A E PROJETIL
 CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_LP (
 	@VELOCIDADE_INICIAL FLOAT,
 	@ANGULO INT,
@@ -95,7 +96,7 @@ CREATE OR ALTER PROCEDURE SP_INSERT_DADOS_LP (
 	) AS
 BEGIN 
 	
-	--INSERE OS DADOS EXTERNOS RECEBIDOS NA TABELA PROJÉTIL
+	--INSERE OS DADOS EXTERNOS RECEBIDOS NA TABELA PROJÃ‰TIL
 	INSERT INTO dbo.PROJETIL(posicaoInicialX, posicaoFinalX,posicaoInicialY,posicaoFinalY,tempo)
 		VALUES(@POSICAO_INICIAL_X,@POSICAO_FINAL_X,@POSICAO_INICIAL_Y,@POSICAO_FINAL_Y,@TEMPO);
 	--OBTEM O ID DA TABELA USUARIO E DA TABELA PROJETIL
@@ -105,7 +106,7 @@ BEGIN
 	DECLARE @ID_PROJETIL INT = (SELECT Top 1(P.idProjetil)
 						FROM PROJETIL P
 						ORDER BY P.idProjetil DESC);
-	--INSERE OS DADOS EXTERNOS RECEBIDOS NA TABELA LANÇA
+	--INSERE OS DADOS EXTERNOS RECEBIDOS NA TABELA LANÃ‡A
 	INSERT INTO LANCA(angulo,velInicial,idProjetil, idUsuario)
 		VALUES(@ANGULO, @VELOCIDADE_INICIAL,@ID_PROJETIL,@ID_USUARIO);
 
