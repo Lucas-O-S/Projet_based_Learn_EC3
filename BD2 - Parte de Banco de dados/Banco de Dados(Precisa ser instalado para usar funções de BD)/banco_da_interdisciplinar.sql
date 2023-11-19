@@ -1,12 +1,12 @@
 --==============================================================================--
---CRIA«√O DE STORAGE PROCEDURES E TRIGGERS PARA PROGRAMA DE LAN«AMENTO BALISTICO--
+--CRIA√á√ÉO DE STORAGE PROCEDURES E TRIGGERS PARA PROGRAMA DE LAN√áAMENTO BALISTICO--
 --==============================================================================--
 /*INTEGRANTES:
-		ADRIANA
-		BEATRIZ
-		DIEGO DE SOUZA LIMA
-		LUCAS
-		VITORIA
+		Adriana Kaori Kakazu
+		Beatriz dos Santos Buglio
+		Diego de Souza Lima
+		Lucas Oliveira Silva
+		Vitoria Kaori Kuriyama
 
 */
 --==============================================================================--
@@ -21,7 +21,7 @@ go
 
 --==================================================================================
 
---CRIANDO O BANCO DE DADOS J¡ DANDO O LOCAL DE CADA ARQUIVO VAI SER SALVO
+--CRIANDO O BANCO DE DADOS J√Å DANDO O LOCAL DE CADA ARQUIVO VAI SER SALVO
 create database LancamentoBalistico
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -39,7 +39,7 @@ GO
 
 --===================================================================================
 
---ALGUMAS CONFIGURA«’ES DO BANCO
+--ALGUMAS CONFIGURA√á√ïES DO BANCO
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -72,7 +72,7 @@ CREATE TABLE [dbo].[PROJETIL](
 )
 go
 
---CRIANDO A TABELA DE LAN«A
+--CRIANDO A TABELA DE LAN√áA
 drop table [dbo].[LANCA]
 
 CREATE TABLE [dbo].[LANCA](
