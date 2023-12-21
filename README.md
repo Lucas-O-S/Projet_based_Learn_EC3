@@ -11,6 +11,10 @@
 Projeto interdisciplinar elaborado pelas disciplinas de **POO - Programação orientada a objetos**, **Física geral e experimental**, **Banco de Dados II** e **Calculo avançado**.
 O projeto tem foco em demonstrar aos alunos uma das aplicações da matéria dada em sala de aula e proporcionar aos mesmos o possivel ambiente de trabalho em equipe no mercado de trabalho.
 
+## Como utilizar
+
++ [Link do video](https://www.youtube.com/watch?v=Be-Tlplik80)
+
 ## Objetivo do Projeto
 Encontrar o ângulo e a velocidade de lançamento de um problema de balistica que permitam atingir um alvo móvel, desenvolver um software que simule, por meio de ilustrações, a trajetória do projétil e do alvo e construir um banco de dados com os resultados  obtidos.
 
