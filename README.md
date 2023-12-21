@@ -2,7 +2,7 @@
 
 ## <font color="blue">Alunos envolvidos</font>
 + [_Adriana Kaori Kakazu_](https://github.com/AdrianaKaori) 
-+ _Beatriz dos Santos Buglio_
++ [Beatriz dos Santos Buglio](https://github.com/BiaBuglio)
 + [_Diego de Souza Lima_](https://github.com/Diego-de-Souza)
 + [_Lucas Oliveira Silva_](https://github.com/Lucas-O-S)
 + [_Vitoria Kaori Kuriyama_](https://github.com/rioksVi)
