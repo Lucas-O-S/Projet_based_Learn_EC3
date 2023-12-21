@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetilTeste
 {
-    public class Objeto
+    public abstract class Objeto
     {
         //Classe pai de meteoro e projetil
         private Double velocidadeInicial;
