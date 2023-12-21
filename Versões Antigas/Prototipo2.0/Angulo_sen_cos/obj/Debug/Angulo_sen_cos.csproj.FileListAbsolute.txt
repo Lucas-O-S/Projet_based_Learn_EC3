@@ -1,0 +1,7 @@
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\bin\Debug\Angulo_sen_cos.exe.config
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\bin\Debug\Angulo_sen_cos.exe
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\bin\Debug\Angulo_sen_cos.pdb
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\obj\Debug\Angulo_sen_cos.csproj.AssemblyReference.cache
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\obj\Debug\Angulo_sen_cos.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\obj\Debug\Angulo_sen_cos.exe
+C:\Users\lucas\Downloads\Angulo_sen_cos\Angulo_sen_cos\obj\Debug\Angulo_sen_cos.pdb
